@@ -1,0 +1,231 @@
+﻿
+@{
+    ViewData["Title"] = "FreshPotatoes";
+}
+
+<div class="hero-section text-center py-5">
+    <div class="container">
+        <h1 class="display-3 fw-bold">🎬 Fresh Potatoes 🎬</h1>
+        <p class="lead">Movies Administration By: Jeed Francis Placio</p>
+
+        <div class="mt-4">
+            <a asp-controller="Movies"
+               asp-action="Index"
+               class="btn btn-primary btn-lg me-2">
+                Browse Movies
+            </a>
+
+            <a asp-controller="Movies"
+               asp-action="Create"
+               class="btn btn-outline-dark btn-lg">
+                Add a Movie
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+
+    <div class="text-center mb-4">
+        <h2>Find what you need!</h2>
+        <p class="text-muted">
+            Everything you need to manage your movies.
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+
+                <img src="~/images/movies1.jpg"
+                     alt="View Movies"
+                     class="section-image">
+
+                <div class="card-body text-center">
+
+                    <h4 class="card-title">View Movies</h4>
+
+                    <p class="card-text">
+                        Browse and explore all movies.
+                    </p>
+
+                    <a asp-controller="Movies"
+                       asp-action="Index"
+                       class="btn btn-primary">
+                        View Movies
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+
+                <div class="featured-posters">
+
+                    <div class="poster">
+                        <img src="~/images/spidey.jpg"
+                             alt="Spider-Man">
+                    </div>
+
+                    <div class="poster">
+                        <img src="~/images/batman.jpg"
+                             alt="Batman">
+                    </div>
+
+                    <div class="poster">
+                        <img src="~/images/obsession.jpeg"
+                             alt="Obsession">
+                    </div>
+
+                </div>
+
+                <div class="card-body text-center">
+
+                    <h4 class="card-title">Featured Movies</h4>
+
+                    <p class="card-text">
+                        Explore our movie recommendations.
+                    </p>
+
+                    <a asp-controller="Movies"
+                       asp-action="Index"
+                       class="btn btn-primary">
+                        View Movies
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+
+                <img src="~/images/movies2.jpg"
+                     alt="Add Movies"
+                     class="section-image">
+
+                <div class="card-body text-center">
+
+                    <h4 class="card-title">Add Movies</h4>
+
+                    <p class="card-text">
+                        Add new movies and manage your Collections.
+                    </p>
+
+                    <a asp-controller="Movies"
+                       asp-action="Create"
+                       class="btn btn-success">
+                        Add Movie
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+
+                <img src="~/images/movies3.jpg"
+                     alt="Manage Movies"
+                     class="section-image">
+
+                <div class="card-body text-center">
+
+                    <h4 class="card-title">Manage Movies</h4>
+
+                    <p class="card-text">
+                        Edit movie or remove movies from your collection.
+                    </p>
+
+                    <a asp-controller="Movies"
+                       asp-action="Index"
+                       class="btn btn-dark">
+                        Manage
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container mt-5 mb-5">
+    <div class="p-5 bg-light rounded-3 text-center shadow-sm">
+
+        <h2>Ready to manage your movies?</h2>
+
+        <p class="lead">
+            Start building and organizing your movie collection today.
+        </p>
+
+        <a asp-controller="Movies"
+           asp-action="Index"
+           class="btn btn-primary btn-lg">
+            Get Started
+        </a>
+
+    </div>
+</div>
+
+<style>
+
+    .hero-section {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        border-radius: 0 0 20px 20px;
+    }
+
+    .card {
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+    }
+
+    .section-image {
+        width: 100%;
+        height: 210px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .featured-posters {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 100%;
+        gap: 5px;
+        padding: 10px;
+        background-color: #f8f9fa;
+    }
+
+    .poster {
+        flex: 1 1 33.33%;
+        min-width: 0;
+    }
+
+    .poster img {
+        display: block;
+        width: 100%;
+        height: 210px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .card-body {
+        padding: 24px;
+    }
+
+    .btn {
+        border-radius: 8px;
+    }
+
+</style>
