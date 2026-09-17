@@ -5,8 +5,7 @@
 This is a Movie Review Website that I created using C# and ASP.NET MVC. 
 The main purpose of this website is to let users browse different movies and see information about them.
 Users can view details such as the movie title, genre, description, rating, and reviews. 
-The website is made to be simple and easy to use for people who want to 
-explore movies and see what other people think about them.
+
 
 ## Features
 
