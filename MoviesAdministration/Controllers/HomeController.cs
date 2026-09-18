@@ -20,7 +20,10 @@ namespace MoviesAdministration.Controllers
         {
             return View();
         }
-
+        public HomeController()
+        {
+            Console.WriteLine("Constructor called.");
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
