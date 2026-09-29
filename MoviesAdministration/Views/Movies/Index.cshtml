@@ -1,0 +1,316 @@
+﻿@model List<MoviesAdministration.Models.Movie>
+
+<style>
+    body {
+        background: #f4efe3;
+        color: #292725;
+    }
+
+    .fresh-page {
+        padding: 45px 0 70px;
+    }
+
+    .brand-banner {
+        background: linear-gradient(135deg, #b83227, #d94a3d);
+        color: white;
+        padding: 45px;
+        border-radius: 24px;
+        margin-bottom: 35px;
+        box-shadow: 0 14px 35px rgba(90, 45, 35, 0.18);
+        position: relative;
+        overflow: hidden;
+    }
+
+        .brand-banner h1 {
+            margin: 0;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 50px;
+            font-weight: 700;
+        }
+
+        .brand-banner p {
+            margin: 12px 0 0;
+            max-width: 650px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+    .brand-small {
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .movie-card {
+        display: flex;
+        gap: 30px;
+        background: #fffdf8;
+        padding: 24px;
+        margin-bottom: 24px;
+        border: 1px solid #e8dfcf;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(70, 55, 40, 0.08);
+    }
+
+    .movie-poster {
+        width: 190px;
+        height: 275px;
+        object-fit: cover;
+        border-radius: 14px;
+        flex-shrink: 0;
+    }
+
+    .movie-info {
+        flex: 1;
+    }
+
+    .movie-tag {
+        display: inline-block;
+        background: #edf2e8;
+        color: #4d654a;
+        padding: 6px 11px;
+        border-radius: 50px;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+    }
+
+    .movie-info h2 {
+        margin: 0 0 16px;
+        color: #292725;
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 35px;
+    }
+
+    .movie-info p {
+        font-size: 16px;
+        line-height: 1.65;
+        margin-bottom: 11px;
+        color: #4f4b46;
+    }
+
+    .movie-info strong {
+        color: #292725;
+    }
+
+    .movie-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 22px;
+    }
+
+        .movie-actions .btn {
+            border-radius: 10px;
+            padding: 9px 17px;
+            font-weight: 600;
+        }
+
+    .btn-primary {
+        background: #b83227;
+        border-color: #b83227;
+    }
+
+    .btn-warning {
+        background: #d9a441;
+        border-color: #d9a441;
+        color: white;
+    }
+
+    .btn-danger {
+        background: #8f2d27;
+        border-color: #8f2d27;
+    }
+
+    .empty-card {
+        background: #fffdf8;
+        border: 1px solid #e8dfcf;
+        border-radius: 20px;
+        padding: 55px 30px;
+        text-align: center;
+        box-shadow: 0 8px 25px rgba(70, 55, 40, 0.08);
+    }
+
+        .empty-card h2 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 32px;
+        }
+
+    .manage-section {
+        margin-top: 45px;
+        background: #2d322c;
+        color: white;
+        padding: 38px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 25px;
+        box-shadow: 0 10px 28px rgba(45, 50, 44, 0.18);
+    }
+
+        .manage-section h2 {
+            margin: 0 0 8px;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 32px;
+        }
+
+        .manage-section p {
+            margin: 0;
+            color: #d9ddd6;
+            font-size: 15px;
+        }
+
+    .add-movie-button {
+        background: #d94a3d;
+        border-color: #d94a3d;
+        border-radius: 10px;
+        padding: 12px 22px;
+        font-weight: 700;
+        color: white;
+    }
+</style>
+
+<div class="container fresh-page">
+
+    <div class="brand-banner">
+
+        <div class="brand-small">
+            FreshPotatoes Cinema
+        </div>
+
+        <h1>Fresh Picks. Fresh Reviews.</h1>
+
+        <p>
+            Discover the latest movies in the FreshPotatoes collection.
+            Browse, review, and manage your favorite films in one place.
+        </p>
+
+    </div>
+
+    @if (Model.Count == 0)
+    {
+        <div class="empty-card">
+
+            <h2>🥔 No Movies Found</h2>
+
+            <p>
+                Your FreshPotatoes collection is currently empty.
+            </p>
+
+        </div>
+    }
+    else
+    {
+        @foreach (var movie in Model)
+        {
+            string image;
+
+            if (movie.Title.Contains("Spider-Man", StringComparison.OrdinalIgnoreCase))
+            {
+                image = "spidey.jpg";
+            }
+            else if (movie.Title.Contains("Batman", StringComparison.OrdinalIgnoreCase))
+            {
+                image = "batman.jpg";
+            }
+            else if (movie.Title.Contains("Obsession", StringComparison.OrdinalIgnoreCase))
+            {
+                image = "obsession.jpeg";
+            }
+            else
+            {
+                image = "movies1.jpg";
+            }
+
+            <div class="movie-card">
+
+                <img src="~/images/@image"
+                     class="movie-poster"
+                     alt="@movie.Title" />
+
+                <div class="movie-info">
+
+                    <span class="movie-tag">
+                        FreshPotatoes Pick
+                    </span>
+
+                    <h2>@movie.Title</h2>
+
+                    <p>
+                        <strong>Synopsis:</strong>
+                        @movie.Synopsis
+                    </p>
+
+                    <p>
+                        <strong>Genre:</strong>
+                        @movie.Genre
+                    </p>
+
+                    <p>
+                        <strong>Rating:</strong>
+                        @movie.Rating
+                    </p>
+
+                    <p>
+                        <strong>Runtime:</strong>
+                        @movie.RuntimeHours hour(s)
+                        @movie.RuntimeMinutes minute(s)
+                    </p>
+
+                    <p>
+                        <strong>Release Date:</strong>
+                        @movie.ReleaseDate.ToString("MMMM dd, yyyy")
+                    </p>
+
+                    <div class="movie-actions">
+
+                        <a asp-action="Details"
+                           asp-route-id="@movie.Id"
+                           class="btn btn-primary">
+                            View
+                        </a>
+
+                        <a asp-action="Edit"
+                           asp-route-id="@movie.Id"
+                           class="btn btn-warning">
+                            Edit
+                        </a>
+
+                        <a asp-action="Delete"
+                           asp-route-id="@movie.Id"
+                           class="btn btn-danger">
+                            Delete
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        }
+    }
+
+    <div class="manage-section">
+
+        <div>
+
+            <h2>Manage Your Movies</h2>
+
+            <p>
+                Add new films or manage your existing FreshPotatoes collection.
+            </p>
+
+        </div>
+
+        <a asp-action="Create"
+           class="btn add-movie-button">
+            + Add New Movie
+        </a>
+
+    </div>
+
+</div>

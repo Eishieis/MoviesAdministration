@@ -1,0 +1,286 @@
+﻿@model MoviesAdministration.Models.Movie
+
+<style>
+    body {
+        background-color: #f4efe3;
+        color: #292725;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .create-page {
+        padding: 50px 0 70px;
+    }
+
+    .create-header {
+        background: linear-gradient(135deg, #b83227, #d94a3d);
+        color: white;
+        padding: 40px;
+        border-radius: 22px 22px 0 0;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(70, 45, 35, 0.12);
+    }
+
+    .create-brand {
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        font-size: 13px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .create-header h1 {
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 45px;
+        margin: 0;
+    }
+
+    .create-header p {
+        margin: 12px 0 0;
+        font-size: 16px;
+    }
+
+    .create-form {
+        background-color: #fffdf8;
+        padding: 40px;
+        border-radius: 0 0 22px 22px;
+        border: 1px solid #e7decd;
+        border-top: none;
+        box-shadow: 0 10px 25px rgba(70, 55, 40, 0.08);
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #292725;
+        margin-bottom: 8px;
+    }
+
+    .form-control {
+        border: 1px solid #d8cfbf;
+        border-radius: 10px;
+        padding: 11px 13px;
+        background-color: #fff;
+    }
+
+        .form-control:focus {
+            border-color: #b83227;
+            box-shadow: 0 0 0 0.2rem rgba(184, 50, 39, 0.12);
+        }
+
+    .field-group {
+        margin-bottom: 22px;
+    }
+
+    .form-buttons {
+        margin-top: 30px;
+        display: flex;
+        gap: 12px;
+    }
+
+    .save-button {
+        background-color: #b83227;
+        border-color: #b83227;
+        color: white;
+        border-radius: 10px;
+        padding: 11px 24px;
+        font-weight: bold;
+    }
+
+        .save-button:hover {
+            background-color: #962a20;
+            border-color: #962a20;
+            color: white;
+        }
+
+    .cancel-button {
+        background-color: #52684d;
+        border-color: #52684d;
+        color: white;
+        border-radius: 10px;
+        padding: 11px 24px;
+        font-weight: bold;
+    }
+
+        .cancel-button:hover {
+            background-color: #42553e;
+            border-color: #42553e;
+            color: white;
+        }
+
+    .runtime-label {
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+</style>
+
+<div class="container create-page">
+
+    <div class="create-header">
+
+        <div class="create-brand">
+            FreshPotatoes
+        </div>
+
+        <h1>Add a New Movie</h1>
+
+        <p>
+            Add a fresh title to your movie collection.
+        </p>
+
+    </div>
+
+    <div class="create-form">
+
+        <form asp-action="Create" method="post">
+
+            <div class="field-group">
+
+                <label asp-for="Title" class="form-label">
+                    Movie Title
+                </label>
+
+                <input asp-for="Title"
+                       class="form-control"
+                       placeholder="Enter movie title" />
+
+                <span asp-validation-for="Title"
+                      class="text-danger">
+                </span>
+
+            </div>
+
+            <div class="field-group">
+
+                <label asp-for="Synopsis" class="form-label">
+                    Synopsis
+                </label>
+
+                <textarea asp-for="Synopsis"
+                          class="form-control"
+                          rows="5"
+                          placeholder="Enter movie synopsis">
+                </textarea>
+
+                <span asp-validation-for="Synopsis"
+                      class="text-danger">
+                </span>
+
+            </div>
+
+            <div class="field-group">
+
+                <label asp-for="Genre" class="form-label">
+                    Genre
+                </label>
+
+                <input asp-for="Genre"
+                       class="form-control"
+                       placeholder="Example: Action, Drama" />
+
+                <span asp-validation-for="Genre"
+                      class="text-danger">
+                </span>
+
+            </div>
+
+            <div class="field-group">
+
+                <label asp-for="Rating" class="form-label">
+                    Rating
+                </label>
+
+                <input asp-for="Rating"
+                       class="form-control"
+                       placeholder="Example: PG-13" />
+
+                <span asp-validation-for="Rating"
+                      class="text-danger">
+                </span>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <div class="field-group">
+
+                        <label asp-for="RuntimeHours"
+                               class="runtime-label">
+                            Runtime Hours
+                        </label>
+
+                        <input asp-for="RuntimeHours"
+                               class="form-control"
+                               type="number"
+                               min="0"
+                               max="10" />
+
+                        <span asp-validation-for="RuntimeHours"
+                              class="text-danger">
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="field-group">
+
+                        <label asp-for="RuntimeMinutes"
+                               class="runtime-label">
+                            Runtime Minutes
+                        </label>
+
+                        <input asp-for="RuntimeMinutes"
+                               class="form-control"
+                               type="number"
+                               min="0"
+                               max="59" />
+
+                        <span asp-validation-for="RuntimeMinutes"
+                              class="text-danger">
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="field-group">
+
+                <label asp-for="ReleaseDate" class="form-label">
+                    Release Date
+                </label>
+
+                <input asp-for="ReleaseDate"
+                       class="form-control"
+                       type="date" />
+
+                <span asp-validation-for="ReleaseDate"
+                      class="text-danger">
+                </span>
+
+            </div>
+
+            <div class="form-buttons">
+
+                <button type="submit"
+                        class="btn save-button">
+                    Add Movie
+                </button>
+
+                <a asp-controller="Home"
+                   asp-action="Index"
+                   class="btn cancel-button">
+                    Cancel
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

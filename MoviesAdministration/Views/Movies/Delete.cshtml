@@ -1,0 +1,70 @@
+﻿@model MoviesAdministration.Models.Movie
+
+<style>
+    body {
+        background-color: Gray;
+    }
+
+    .delete-page {
+        padding: 40px 0;
+    }
+
+    .delete-card {
+        background-color: white;
+        padding: 35px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+        .delete-card h1 {
+            color: #d32f2f;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 42px;
+            letter-spacing: 2px;
+        }
+
+        .delete-card p {
+            font-size: 18px;
+            color: #444;
+        }
+
+    .delete-buttons {
+        margin-top: 25px;
+    }
+</style>
+
+<div class="container delete-page">
+
+    <div class="delete-card">
+
+        <h1>Delete Movie</h1>
+
+        <p>
+            Are you sure you want to delete
+            <strong>@Model.Title</strong>?
+        </p>
+
+        <p>
+            This action cannot be undone after.
+        </p>
+
+        <div class="delete-buttons">
+
+            <form asp-action="Delete" method="post" style="display:inline;">
+                <input type="hidden" asp-for="Id" />
+
+                <button type="submit" class="btn btn-danger">
+                    Yes, Delete
+                </button>
+            </form>
+
+            <a asp-action="Index" class="btn btn-secondary">
+                Cancel
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
