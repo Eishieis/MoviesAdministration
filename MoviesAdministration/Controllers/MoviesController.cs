@@ -14,51 +14,50 @@ namespace MoviesAdministration.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(bool openCreate = false)
         {
             var movies = await _context.Movies
                 .OrderByDescending(m => m.ReleaseDate)
                 .ToListAsync();
 
+            ViewBag.OpenCreate = openCreate;
+
             return View(movies);
         }
 
-        public IActionResult Featured()
+        public async Task<IActionResult> DetailsModal(int id)
         {
-            return View();
-        }
-
-        public async Task<IActionResult> Details(int id)
-        {
-            var movie = await _context.Movies
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var movie = await _context.Movies.FindAsync(id);
 
             if (movie == null)
             {
                 return NotFound();
             }
 
-            return View(movie);
+            return PartialView("moviedetails", movie);
         }
 
         public IActionResult Create()
         {
-            return View();
+            return PartialView("moviecreate", new Movie
+            {
+                ReleaseDate = DateTime.Today
+            });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Movie movie)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Movies.Add(movie);
-                await _context.SaveChangesAsync();
-
-                return RedirectToAction(nameof(Index));
+                return PartialView("moviecreate", movie);
             }
 
-            return View(movie);
+            _context.Movies.Add(movie);
+            await _context.SaveChangesAsync();
+
+            return Json(new { success = true });
         }
 
         public async Task<IActionResult> Edit(int id)
@@ -70,7 +69,7 @@ namespace MoviesAdministration.Controllers
                 return NotFound();
             }
 
-            return View(movie);
+            return PartialView("movieedit", movie);
         }
 
         [HttpPost]
@@ -79,18 +78,18 @@ namespace MoviesAdministration.Controllers
         {
             if (id != movie.Id)
             {
-                return NotFound();
+                return BadRequest();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Movies.Update(movie);
-                await _context.SaveChangesAsync();
-
-                return RedirectToAction(nameof(Index));
+                return PartialView("movieedit", movie);
             }
 
-            return View(movie);
+            _context.Movies.Update(movie);
+            await _context.SaveChangesAsync();
+
+            return Json(new { success = true });
         }
 
         public async Task<IActionResult> Delete(int id)
@@ -102,7 +101,7 @@ namespace MoviesAdministration.Controllers
                 return NotFound();
             }
 
-            return View(movie);
+            return PartialView("moviedelete", movie);
         }
 
         [HttpPost, ActionName("Delete")]
@@ -111,13 +110,15 @@ namespace MoviesAdministration.Controllers
         {
             var movie = await _context.Movies.FindAsync(id);
 
-            if (movie != null)
+            if (movie == null)
             {
-                _context.Movies.Remove(movie);
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
 
-            return RedirectToAction(nameof(Index));
+            _context.Movies.Remove(movie);
+            await _context.SaveChangesAsync();
+
+            return Json(new { success = true });
         }
     }
 }

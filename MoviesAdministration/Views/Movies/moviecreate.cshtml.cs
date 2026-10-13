@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace MoviesAdministration.Views.Movies
 {
-    public class EditModel : PageModel
+    public class moviecreateModel : PageModel
     {
         public void OnGet()
         {

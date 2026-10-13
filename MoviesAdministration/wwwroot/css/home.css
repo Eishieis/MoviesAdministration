@@ -1,0 +1,220 @@
+﻿.home-page {
+    width: 100vw;
+    min-height: calc(100vh - 75px);
+    margin-left: calc(50% - 50vw);
+    background: radial-gradient(ellipse at top left, rgba(77, 107, 54, 0.25), transparent 45%), linear-gradient(145deg, #111a13, #1c281c 55%, #2a2419);
+    color: #f3f0df;
+    display: flex;
+    align-items: center;
+}
+
+.home-container {
+    max-width: 1100px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.home-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    background-color: #d9c29a;
+    border: 1px solid #bda77f;
+    border-top: 4px solid #879b50;
+    border-radius: 8px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+.home-visual {
+    position: relative;
+    min-height: 430px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    background: radial-gradient(ellipse at bottom, rgba(103, 119, 57, 0.25), transparent 65%), #171e15;
+    overflow: hidden;
+}
+
+.home-background-image {
+    display: block;
+    width: 100%;
+    height: 380px;
+    object-fit: contain;
+    object-position: center;
+    filter: saturate(0.85) contrast(1.05);
+}
+
+.home-image-label {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    padding: 8px 12px;
+    background-color: rgba(23, 31, 19, 0.92);
+    color: #d8dfb9;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    border-left: 3px solid #a5b86c;
+}
+
+.home-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 45px;
+    background: linear-gradient(145deg, #ead9b7, #d9c29a);
+}
+
+.home-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #405735;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.potato-mark {
+    font-size: 1.7rem;
+}
+
+.home-divider {
+    width: 58px;
+    height: 4px;
+    margin: 24px 0;
+    background: linear-gradient(90deg, #637e43, #bda36b);
+    border-radius: 3px;
+}
+
+.home-content h1 {
+    margin: 0 0 14px;
+    color: #34291d;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.home-description {
+    margin: 0;
+    color: #514634;
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+.browse-movies-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 28px;
+    padding: 13px 20px;
+    background: linear-gradient(135deg, #637e43, #486237);
+    border: 1px solid #849c5b;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.18);
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .browse-movies-btn:hover {
+        background: linear-gradient(135deg, #78964f, #587744);
+        border-color: #657d48;
+        color: #ffffff;
+        transform: translateY(-2px);
+        box-shadow: 0 7px 18px rgba(0, 0, 0, 0.25);
+    }
+
+    .browse-movies-btn:focus-visible {
+        outline: 3px solid #52684d;
+        outline-offset: 4px;
+    }
+
+.browse-arrow {
+    font-size: 1.2rem;
+    transition: transform 0.2s ease;
+}
+
+.browse-movies-btn:hover .browse-arrow {
+    transform: translateX(4px);
+}
+
+.home-caption {
+    margin-top: 35px;
+    padding-top: 15px;
+    width: 100%;
+    border-top: 1px solid #bda77f;
+    color: #5c6545;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.home-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 16px 2px 0;
+    color: #b6ca82;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+    .home-footer span:last-child {
+        color: #aaa995;
+        font-weight: 400;
+    }
+
+@media (max-width: 768px) {
+    .home-page {
+        min-height: calc(100vh - 65px);
+    }
+
+    .home-container {
+        padding: 25px 20px;
+    }
+
+    .home-card {
+        grid-template-columns: 1fr;
+    }
+
+    .home-visual {
+        min-height: 260px;
+        padding: 15px;
+    }
+
+    .home-background-image {
+        height: 240px;
+    }
+
+    .home-content {
+        padding: 30px 25px;
+    }
+
+        .home-content h1 {
+            font-size: 2.1rem;
+        }
+
+    .home-caption {
+        margin-top: 28px;
+    }
+}
+
+@media (max-width: 400px) {
+    .home-content {
+        padding: 25px 18px;
+    }
+
+    .browse-movies-btn {
+        width: 100%;
+        gap: 8px;
+        padding: 12px 10px;
+        font-size: 0.82rem;
+    }
+}

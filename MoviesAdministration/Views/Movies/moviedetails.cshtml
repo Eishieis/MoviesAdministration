@@ -1,0 +1,85 @@
+﻿@model MoviesAdministration.Models.Movie
+
+@{
+    string image;
+
+    if (Model.Title.Contains("Spider-Man", StringComparison.OrdinalIgnoreCase))
+    {
+        image = "spidey.jpg";
+    }
+    else if (Model.Title.Contains("Batman", StringComparison.OrdinalIgnoreCase))
+    {
+        image = "batman.jpg";
+    }
+    else if (Model.Title.Contains("Obsession", StringComparison.OrdinalIgnoreCase))
+    {
+        image = "obsession.jpeg";
+    }
+    else
+    {
+        image = "movies1.jpg";
+    }
+}
+
+<div class="modal-header">
+    <div>
+        <div class="text-uppercase text-muted small fw-semibold mb-1">
+            FreshPotatoes / Movie Details
+        </div>
+
+        <h2 class="modal-title fs-5" id="movieDetailsModalLabel">
+            @Model.Title
+        </h2>
+    </div>
+
+    <button type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close">
+    </button>
+</div>
+
+<div class="modal-body">
+    <div class="row g-3">
+
+        <div class="col-auto">
+            <img src="~/images/@image"
+                 alt="@Model.Title poster"
+                 class="movie-modal-poster" />
+        </div>
+
+        <div class="col">
+            <dl class="row mb-0">
+
+                <dt class="col-sm-4">Synopsis</dt>
+                <dd class="col-sm-8">@Model.Synopsis</dd>
+
+                <dt class="col-sm-4">Genre</dt>
+                <dd class="col-sm-8">@Model.Genre</dd>
+
+                <dt class="col-sm-4">Rating</dt>
+                <dd class="col-sm-8">@Model.Rating</dd>
+
+                <dt class="col-sm-4">Runtime</dt>
+                <dd class="col-sm-8">
+                    @Model.RuntimeHours hour(s) @Model.RuntimeMinutes minute(s)
+                </dd>
+
+                <dt class="col-sm-4">Release Date</dt>
+                <dd class="col-sm-8">
+                    @Model.ReleaseDate.ToString("MMMM dd, yyyy")
+                </dd>
+
+            </dl>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button"
+            class="btn btn-secondary btn-sm"
+            data-bs-dismiss="modal">
+        Close
+    </button>
+</div>

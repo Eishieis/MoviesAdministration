@@ -2,312 +2,58 @@
     ViewData["Title"] = "FreshPotatoes";
 }
 
-<style>
-    body {
-        background-color: #f4efe3;
-        color: #292725;
-        font-family: Arial, Helvetica, sans-serif;
-    }
+<link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
 
-    .fresh-home {
-        padding-bottom: 60px;
-    }
+<div class="home-page">
+    <div class="container home-container">
 
-    .hero-section {
-        background-image: linear-gradient(rgba(40, 35, 30, 0.62), rgba(40, 35, 30, 0.62)), url('/images/background.jpg');
-        background-size: cover;
-        background-position: center;
-        color: white;
-        padding: 100px 20px;
-        border-radius: 0 0 28px 28px;
-        box-shadow: 0 10px 30px rgba(60, 45, 30, 0.18);
-    }
+        <section class="home-card">
 
-    .brand-label {
-        text-transform: uppercase;
-        letter-spacing: 5px;
-        font-size: 14px;
-        font-weight: bold;
-        margin-bottom: 15px;
-    }
+            <div class="home-visual">
+                <img src="~/images/logo.png"
+                     alt="FreshPotatoes cinema background"
+                     class="home-background-image" />
 
-    .hero-title {
-        font-family: Georgia, 'Times New Roman', serif;
-        font-size: 72px;
-        font-weight: bold;
-        letter-spacing: 2px;
-        margin: 0;
-        text-shadow: 3px 4px 8px rgba(0, 0, 0, 0.6);
-    }
+                <div class="home-image-label">
+                    THE FRESHEST POTATO IN CINEMA HISTORY
+                </div>
+            </div>
 
-    .hero-subtitle {
-        font-size: 19px;
-        margin-top: 18px;
-        color: #f4efe3;
-    }
+            <div class="home-content">
 
-    .hero-buttons {
-        margin-top: 30px;
-    }
+                <div class="home-brand">
+                    <span class="potato-mark">🥔</span>
+                    <span>FreshPotatoes</span>
+                </div>
 
-        .hero-buttons .btn {
-            border-radius: 10px;
-            padding: 12px 24px;
-            font-weight: bold;
-            margin: 5px;
-        }
+                <div class="home-divider"></div>
 
-    .section-area {
-        padding: 55px 0;
-    }
+                <h1>Movie Database</h1>
 
-    .section-title {
-        font-family: Georgia, 'Times New Roman', serif;
-        font-size: 44px;
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
-
-    .section-subtitle {
-        color: #6b655d;
-        font-size: 17px;
-        margin-bottom: 35px;
-    }
-
-    .fresh-card {
-        background-color: #fffdf8;
-        border: 1px solid #e7decd;
-        border-radius: 20px;
-        overflow: hidden;
-        height: 100%;
-        box-shadow: 0 8px 25px rgba(70, 55, 40, 0.08);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-        .fresh-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 15px 30px rgba(70, 55, 40, 0.14);
-        }
-
-    .card-image {
-        width: 100%;
-        height: 220px;
-        object-fit: cover;
-    }
-
-    .featured-posters {
-        display: flex;
-        gap: 5px;
-        padding: 10px;
-        background-color: #eee8dc;
-    }
-
-        .featured-posters img {
-            width: 33.33%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-    .fresh-card-body {
-        padding: 26px;
-        text-align: center;
-    }
-
-    .fresh-card-title {
-        font-family: Georgia, 'Times New Roman', serif;
-        font-size: 29px;
-        font-weight: bold;
-        margin-bottom: 12px;
-    }
-
-    .fresh-card-text {
-        color: #66615a;
-        line-height: 1.6;
-        margin-bottom: 20px;
-    }
-
-    .fresh-btn {
-        border-radius: 10px;
-        padding: 10px 20px;
-        font-weight: bold;
-        border: none;
-    }
-
-    .btn-fresh-red {
-        background-color: #b83227;
-        color: white;
-    }
-
-        .btn-fresh-red:hover {
-            background-color: #962a20;
-            color: white;
-        }
-
-    .btn-fresh-green {
-        background-color: #52684d;
-        color: white;
-    }
-
-        .btn-fresh-green:hover {
-            background-color: #42553e;
-            color: white;
-        }
-</style>
-
-<div class="fresh-home">
-
-    <div class="hero-section text-center">
-
-        <div class="container">
-
-        
-
-            <h1 class="hero-title">
-                Fresh Potatoes
-            </h1>
-
-            <p class="hero-subtitle">
-                Your fresh collection of movies, reviews, and cinema favorites.
-            </p>
-
-            <div class="hero-buttons">
+                <p class="home-description">
+                    Your collection of movies, organized in one place.
+                   
+                </p>
 
                 <a asp-controller="Movies"
                    asp-action="Index"
-                   class="btn btn-fresh-red">
-                    Browse Movies
+                   class="btn browse-movies-btn">
+                    Browse Movie Collection
+                    <span class="browse-arrow" aria-hidden="true">&rarr;</span>
                 </a>
 
-                <a asp-controller="Movies"
-                   asp-action="Create"
-                   class="btn btn-outline-light">
-                    Add a Movie
-                </a>
+                <div class="home-caption">
+                    MOVIE DATABASE ADMINISTRATION
+                </div>
 
             </div>
 
+        </section>
+
+        <div class="home-footer">
+            <span>FreshPotatoes</span>
+           
         </div>
 
     </div>
-
-    <div class="container section-area">
-
-        <div class="text-center">
-
-            <h2 class="section-title">
-                Explore FreshPotatoes
-            </h2>
-
-            <p class="section-subtitle">
-                Discover, browse, and add movies to your collection.
-            </p>
-
-        </div>
-
-        <div class="row g-4">
-
-            <div class="col-md-4">
-
-                <div class="fresh-card">
-
-                    <img src="~/images/movies1.jpg"
-                         alt="View Movies"
-                         class="card-image">
-
-                    <div class="fresh-card-body">
-
-                        <h3 class="fresh-card-title">
-                            Your Movie Collection
-                        </h3>
-
-                        <p class="fresh-card-text">
-                            Browse the complete list of movies currently in the FreshPotatoes collection.
-                        </p>
-
-                        <a asp-controller="Movies"
-                           asp-action="Index"
-                           class="btn fresh-btn btn-fresh-red">
-                            View Movies
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-4">
-
-                <div class="fresh-card">
-
-                    <div class="featured-posters">
-
-                        <img src="~/images/spidey.jpg"
-                             alt="Spider-Man">
-
-                        <img src="~/images/batman.jpg"
-                             alt="Batman">
-
-                        <img src="~/images/obsession.jpeg"
-                             alt="Obsession">
-
-                    </div>
-
-                    <div class="fresh-card-body">
-
-                        <h3 class="fresh-card-title">
-                            Featured Movies
-                        </h3>
-
-                        <p class="fresh-card-text">
-                            Explore the movies selected for the FreshPotatoes spotlight.
-                        </p>
-
-                        <a asp-controller="Movies"
-                           asp-action="Featured"
-                           class="btn fresh-btn btn-fresh-red">
-                            View Featured
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-4">
-
-                <div class="fresh-card">
-
-                    <img src="~/images/movies2.jpg"
-                         alt="Add Movies"
-                         class="card-image">
-
-                    <div class="fresh-card-body">
-
-                        <h3 class="fresh-card-title">
-                            Add Movies
-                        </h3>
-
-                        <p class="fresh-card-text">
-                            Add a new movie to your FreshPotatoes collection.
-                        </p>
-
-                        <a asp-controller="Movies"
-                           asp-action="Create"
-                           class="btn fresh-btn btn-fresh-green">
-                            Add Movie
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
 </div>

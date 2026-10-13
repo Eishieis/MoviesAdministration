@@ -1,0 +1,68 @@
+﻿@model MoviesAdministration.Models.Movie
+
+<div class="modal-header">
+    <div>
+        <div class="text-muted small">FreshPotatoes / Database</div>
+        <h2 class="modal-title fs-5" id="movieModalLabel">Edit Movie</h2>
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
+<form asp-controller="Movies" asp-action="Edit" asp-route-id="@Model.Id" method="post" class="js-modal-form">
+    <div class="modal-body">
+        <input type="hidden" asp-for="Id" />
+
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label">Title</label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Synopsis" class="form-label">Synopsis</label>
+            <textarea asp-for="Synopsis" class="form-control" rows="3"></textarea>
+            <span asp-validation-for="Synopsis" class="text-danger"></span>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="Genre" class="form-label">Genre</label>
+                <input asp-for="Genre" class="form-control" />
+                <span asp-validation-for="Genre" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label asp-for="Rating" class="form-label">Audience Rating</label>
+                <input asp-for="Rating" class="form-control" />
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label asp-for="RuntimeHours" class="form-label">Runtime Hours</label>
+                <input asp-for="RuntimeHours" type="number" min="0" max="10" class="form-control" />
+                <span asp-validation-for="RuntimeHours" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label asp-for="RuntimeMinutes" class="form-label">Runtime Minutes</label>
+                <input asp-for="RuntimeMinutes" type="number" min="0" max="59" class="form-control" />
+                <span asp-validation-for="RuntimeMinutes" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label asp-for="ReleaseDate" class="form-label">Release Date</label>
+                <input asp-for="ReleaseDate" type="date" class="form-control" />
+                <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-warning">Save Changes</button>
+    </div>
+</form>

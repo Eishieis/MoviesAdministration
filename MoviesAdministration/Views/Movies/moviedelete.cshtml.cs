@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace MoviesAdministration.Views.Movies
 {
-    public class FeaturedModel : PageModel
+    public class moviedeleteModel : PageModel
     {
         public void OnGet()
         {
