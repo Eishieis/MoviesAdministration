@@ -27,5 +27,7 @@ namespace MoviesAdministration.Models
         [Required]
         [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }
+
+        public string? ImageBlobName { get; set; }
     }
 }

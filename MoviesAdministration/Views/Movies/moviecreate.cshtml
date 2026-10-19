@@ -16,6 +16,7 @@
 <form asp-controller="Movies"
       asp-action="Create"
       method="post"
+      enctype="multipart/form-data"
       class="js-modal-form">
 
     <div class="modal-body">
@@ -87,6 +88,22 @@
                        class="form-control" />
                 <span asp-validation-for="ReleaseDate" class="text-danger"></span>
             </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="imageFile" class="form-label">Movie Image</label>
+
+            <input type="file"
+                   id="imageFile"
+                   name="imageFile"
+                   class="form-control"
+                   accept=".jpg,.jpeg,.png,.gif,.webp,image/jpeg,image/png,image/gif,image/webp" />
+
+            <div class="form-text">
+                Select a JPG, PNG, GIF, or WebP image. Maximum size: 5 MB.
+            </div>
+
+            @Html.ValidationMessage("imageFile", "", new { @class = "text-danger" })
         </div>
 
     </div>

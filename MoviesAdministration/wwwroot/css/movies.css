@@ -214,3 +214,23 @@
         .movie-index a:not(.btn):hover {
             color: #f0dfbd;
         }
+    .movie-modal-poster {
+        display: block;
+        width: 240px;
+        max-width: 100%;
+        max-height: 380px;
+        height: auto;
+        object-fit: contain;
+        object-position: center;
+        border: 1px solid #bda77f;
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 575.98px) {
+    .movie-modal-poster {
+        width: 200px;
+        max-height: 300px;
+        margin: 0 auto 12px;
+    }
+}

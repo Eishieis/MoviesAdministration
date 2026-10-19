@@ -75,9 +75,24 @@
                                 image = "movies1.jpg";
                             }
 
+                            string imageUrl;
+
+                            if (!string.IsNullOrWhiteSpace(movie.ImageBlobName))
+                            {
+                                imageUrl = Url.Action(
+                                    "Image",
+                                    "Movies",
+                                    new { blobName = movie.ImageBlobName }
+                                ) ?? Url.Content($"~/images/{image}");
+                            }
+                            else
+                            {
+                                imageUrl = Url.Content($"~/images/{image}");
+                            }
+
                             <tr>
                                 <td>
-                                    <img src="~/images/@image"
+                                    <img src="@imageUrl"
                                          alt="@movie.Title poster"
                                          class="movie-thumbnail" />
                                 </td>

@@ -34,6 +34,9 @@ namespace MoviesAdministration.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImageBlobName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Rating")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

@@ -9,6 +9,7 @@ builder.Services.AddDbContext<MovieDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("MovieDatabase")));
 
+builder.Services.AddSingleton<MoviesAdministration.Services.BlobStorageService>();
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
