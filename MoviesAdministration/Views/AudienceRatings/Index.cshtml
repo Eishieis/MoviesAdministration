@@ -1,0 +1,68 @@
+@model IEnumerable<MoviesAdministration.Models.AudienceRating>
+
+@{
+    ViewData["Title"] = "Audience Ratings";
+}
+
+<div class="container py-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1>Audience Ratings</h1>
+            <p class="text-muted">
+                Manage your FreshPotatoes audience ratings.
+            </p>
+        </div>
+
+        <a href="@Url.Action("Create", "AudienceRatings")"
+           class="btn btn-success">
+            + Add New Rating
+        </a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+
+            @if (Model == null || !Model.Any())
+            {
+                <p class="text-muted">
+                    No audience ratings have been added yet.
+                </p>
+            }
+            else
+            {
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Audience Rating</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var rating in Model)
+                        {
+                            <tr>
+                                <td>@rating.Id</td>
+                                <td>@rating.Name</td>
+                                <td>
+                                    <a href="@Url.Action("Details", "AudienceRatings", new { id = rating.Id })"
+                                       class="btn btn-primary btn-sm">View</a>
+
+                                    <a href="@Url.Action("Edit", "AudienceRatings", new { id = rating.Id })"
+                                       class="btn btn-warning btn-sm">Edit</a>
+
+                                    <a href="@Url.Action("Delete", "AudienceRatings", new { id = rating.Id })"
+                                       class="btn btn-danger btn-sm">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+
+        </div>
+    </div>
+
+</div>

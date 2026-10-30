@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace MoviesAdministration.Models
 {
@@ -7,16 +8,18 @@ namespace MoviesAdministration.Models
         public int Id { get; set; }
 
         [Required]
-        public string Title { get; set; }
+        public string Title { get; set; } = string.Empty;
 
         [Required]
-        public string Synopsis { get; set; }
+        public string Synopsis { get; set; } = string.Empty;
 
-        [Required]
-        public string Genre { get; set; }
+        public int GenreId { get; set; }
 
-        [Required]
-        public string Rating { get; set; }
+        public Genre? Genre { get; set; }
+
+        public int AudienceRatingId { get; set; }
+
+        public AudienceRating? AudienceRating { get; set; }
 
         [Range(0, 10)]
         public int RuntimeHours { get; set; }

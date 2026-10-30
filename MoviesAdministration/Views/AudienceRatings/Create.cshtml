@@ -1,0 +1,48 @@
+@model MoviesAdministration.Models.AudienceRating
+
+@{
+    ViewData["Title"] = "Create Audience Rating";
+}
+
+<div class="container py-4">
+
+    <h1>Add New Audience Rating</h1>
+    <p class="text-muted">Add a new movie audience rating.</p>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+
+            <form asp-action="Create" method="post">
+
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger mb-3">
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">
+                        Audience Rating
+                    </label>
+
+                    <input asp-for="Name"
+                           class="form-control"
+                           placeholder="Example: PG-13" />
+
+                    <span asp-validation-for="Name"
+                          class="text-danger">
+                    </span>
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                    Create Rating
+                </button>
+
+                <a asp-action="Index" class="btn btn-secondary">
+                    Back to List
+                </a>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>

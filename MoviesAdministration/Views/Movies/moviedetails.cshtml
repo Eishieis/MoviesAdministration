@@ -71,10 +71,10 @@
                 <dd class="col-sm-8">@Model.Synopsis</dd>
 
                 <dt class="col-sm-4">Genre</dt>
-                <dd class="col-sm-8">@Model.Genre</dd>
+                <dd class="col-sm-8">@Model.Genre?.Name</dd>
 
-                <dt class="col-sm-4">Rating</dt>
-                <dd class="col-sm-8">@Model.Rating</dd>
+                <dt class="col-sm-4">Audience Rating</dt>
+                <dd class="col-sm-8">@Model.AudienceRating?.Name</dd>
 
                 <dt class="col-sm-4">Runtime</dt>
                 <dd class="col-sm-8">

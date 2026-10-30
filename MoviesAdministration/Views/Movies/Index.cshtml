@@ -14,7 +14,9 @@
             <div class="text-uppercase text-muted small fw-semibold mb-1">
                 FreshPotatoes / Database
             </div>
+
             <h1 class="h3 mb-1">Movie Collection</h1>
+
             <p class="text-muted mb-0">View and manage movie records.</p>
         </div>
 
@@ -98,17 +100,22 @@
                                 </td>
 
                                 <td class="fw-semibold">@movie.Title</td>
-                                <td>@movie.Genre</td>
+
+                                <td>@movie.Genre?.Name</td>
 
                                 <td>
                                     <span class="badge bg-light text-dark border">
-                                        @movie.Rating
+                                        @movie.AudienceRating?.Name
                                     </span>
                                 </td>
 
-                                <td>@movie.RuntimeHours h @movie.RuntimeMinutes min</td>
+                                <td>
+                                    @movie.RuntimeHours h @movie.RuntimeMinutes min
+                                </td>
 
-                                <td>@movie.ReleaseDate.ToString("MMM dd, yyyy")</td>
+                                <td>
+                                    @movie.ReleaseDate.ToString("MMM dd, yyyy")
+                                </td>
 
                                 <td>
                                     <div class="d-flex flex-wrap gap-2">

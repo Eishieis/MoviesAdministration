@@ -44,49 +44,81 @@
 
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label asp-for="Genre" class="form-label">Genre</label>
-                <input asp-for="Genre"
-                       class="form-control"
-                       placeholder="e.g. Action, Drama" />
-                <span asp-validation-for="Genre" class="text-danger"></span>
+                <label asp-for="GenreId" class="form-label">Genre</label>
+
+                <select asp-for="GenreId" class="form-select">
+                    <option value="">Select a genre</option>
+
+                    @foreach (var genre in ViewBag.Genres)
+                    {
+                        <option value="@genre.Id">@genre.Name</option>
+                    }
+                </select>
+
+                <span asp-validation-for="GenreId" class="text-danger"></span>
             </div>
 
             <div class="col-md-6 mb-3">
-                <label asp-for="Rating" class="form-label">Audience Rating</label>
-                <input asp-for="Rating"
-                       class="form-control"
-                       placeholder="e.g. PG-13" />
-                <span asp-validation-for="Rating" class="text-danger"></span>
+                <label asp-for="AudienceRatingId" class="form-label">
+                    Audience Rating
+                </label>
+
+                <select asp-for="AudienceRatingId" class="form-select">
+                    <option value="">Select an audience rating</option>
+
+                    @foreach (var rating in ViewBag.AudienceRatings)
+                    {
+                        <option value="@rating.Id">@rating.Name</option>
+                    }
+                </select>
+
+                <span asp-validation-for="AudienceRatingId"
+                      class="text-danger"></span>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-4 mb-3">
-                <label asp-for="RuntimeHours" class="form-label">Runtime Hours</label>
+                <label asp-for="RuntimeHours" class="form-label">
+                    Runtime Hours
+                </label>
+
                 <input asp-for="RuntimeHours"
                        type="number"
                        min="0"
                        max="10"
                        class="form-control" />
-                <span asp-validation-for="RuntimeHours" class="text-danger"></span>
+
+                <span asp-validation-for="RuntimeHours"
+                      class="text-danger"></span>
             </div>
 
             <div class="col-md-4 mb-3">
-                <label asp-for="RuntimeMinutes" class="form-label">Runtime Minutes</label>
+                <label asp-for="RuntimeMinutes" class="form-label">
+                    Runtime Minutes
+                </label>
+
                 <input asp-for="RuntimeMinutes"
                        type="number"
                        min="0"
                        max="59"
                        class="form-control" />
-                <span asp-validation-for="RuntimeMinutes" class="text-danger"></span>
+
+                <span asp-validation-for="RuntimeMinutes"
+                      class="text-danger"></span>
             </div>
 
             <div class="col-md-4 mb-3">
-                <label asp-for="ReleaseDate" class="form-label">Release Date</label>
+                <label asp-for="ReleaseDate" class="form-label">
+                    Release Date
+                </label>
+
                 <input asp-for="ReleaseDate"
                        type="date"
                        class="form-control" />
-                <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+
+                <span asp-validation-for="ReleaseDate"
+                      class="text-danger"></span>
             </div>
         </div>
 
@@ -103,7 +135,10 @@
                 Select a JPG, PNG, GIF, or WebP image. Maximum size: 5 MB.
             </div>
 
-            @Html.ValidationMessage("imageFile", "", new { @class = "text-danger" })
+            @Html.ValidationMessage(
+                "imageFile",
+                "",
+                new { @class = "text-danger" })
         </div>
 
     </div>

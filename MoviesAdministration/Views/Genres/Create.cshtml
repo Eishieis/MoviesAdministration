@@ -1,0 +1,49 @@
+@model MoviesAdministration.Models.Genre
+
+@{
+    ViewData["Title"] = "Create Genre";
+}
+
+<div class="container py-4">
+
+    <h1>Add New Genre</h1>
+    <p class="text-muted">Add a new movie genre to FreshPotatoes.</p>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+
+            <form asp-action="Create" method="post">
+
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger mb-3">
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">
+                        Genre Name
+                    </label>
+
+                    <input asp-for="Name"
+                           class="form-control"
+                           placeholder="Enter genre name" />
+
+                    <span asp-validation-for="Name"
+                          class="text-danger">
+                    </span>
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                    Create Genre
+                </button>
+
+                <a asp-action="Index"
+                   class="btn btn-secondary">
+                    Back to List
+                </a>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>

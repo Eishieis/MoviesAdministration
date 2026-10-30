@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using MoviesAdministration.Data;
 using MoviesAdministration.Models;
 using MoviesAdministration.Services;
-using Microsoft.AspNetCore.Http;
 using System;
 using System.IO;
 using System.Linq;
@@ -40,9 +40,40 @@ namespace MoviesAdministration.Controllers
             _blobStorage = blobStorage;
         }
 
+        private async Task LoadMovieOptionsAsync()
+        {
+            ViewBag.Genres = await _context.Genres
+                .OrderBy(g => g.Name)
+                .ToListAsync();
+
+            ViewBag.AudienceRatings = await _context.AudienceRatings
+                .OrderBy(a => a.Name)
+                .ToListAsync();
+        }
+
+        private async Task ValidateRelationships(Movie movie)
+        {
+            if (!await _context.Genres.AnyAsync(g => g.Id == movie.GenreId))
+            {
+                ModelState.AddModelError(
+                    "GenreId",
+                    "Please select a valid genre.");
+            }
+
+            if (!await _context.AudienceRatings.AnyAsync(
+                a => a.Id == movie.AudienceRatingId))
+            {
+                ModelState.AddModelError(
+                    "AudienceRatingId",
+                    "Please select a valid audience rating.");
+            }
+        }
+
         public async Task<IActionResult> Index(bool openCreate = false)
         {
             var movies = await _context.Movies
+                .Include(m => m.Genre)
+                .Include(m => m.AudienceRating)
                 .OrderByDescending(m => m.ReleaseDate)
                 .ToListAsync();
 
@@ -53,7 +84,10 @@ namespace MoviesAdministration.Controllers
 
         public async Task<IActionResult> DetailsModal(int id)
         {
-            var movie = await _context.Movies.FindAsync(id);
+            var movie = await _context.Movies
+                .Include(m => m.Genre)
+                .Include(m => m.AudienceRating)
+                .FirstOrDefaultAsync(m => m.Id == id);
 
             if (movie == null)
             {
@@ -88,8 +122,10 @@ namespace MoviesAdministration.Controllers
                 image.Details.ContentType ?? "application/octet-stream");
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            await LoadMovieOptionsAsync();
+
             return PartialView("moviecreate", new Movie
             {
                 ReleaseDate = DateTime.Today
@@ -103,8 +139,13 @@ namespace MoviesAdministration.Controllers
             IFormFile? imageFile,
             CancellationToken cancellationToken)
         {
-            if (!ValidateImage(imageFile) || !ModelState.IsValid)
+            ValidateImage(imageFile);
+
+            await ValidateRelationships(movie);
+
+            if (!ModelState.IsValid)
             {
+                await LoadMovieOptionsAsync();
                 return PartialView("moviecreate", movie);
             }
 
@@ -122,6 +163,7 @@ namespace MoviesAdministration.Controllers
                         "imageFile",
                         $"Upload error: {ex.GetType().Name} - {ex.Message}");
 
+                    await LoadMovieOptionsAsync();
                     return PartialView("moviecreate", movie);
                 }
             }
@@ -140,6 +182,8 @@ namespace MoviesAdministration.Controllers
             {
                 return NotFound();
             }
+
+            await LoadMovieOptionsAsync();
 
             return PartialView("movieedit", movie);
         }
@@ -164,9 +208,16 @@ namespace MoviesAdministration.Controllers
                 return NotFound();
             }
 
-            if (!ValidateImage(imageFile) || !ModelState.IsValid)
+            ValidateImage(imageFile);
+
+            await ValidateRelationships(movie);
+
+            if (!ModelState.IsValid)
             {
                 movie.ImageBlobName = existingMovie.ImageBlobName;
+
+                await LoadMovieOptionsAsync();
+
                 return PartialView("movieedit", movie);
             }
 
@@ -187,14 +238,16 @@ namespace MoviesAdministration.Controllers
                         "imageFile",
                         $"Upload error: {ex.GetType().Name} - {ex.Message}");
 
+                    await LoadMovieOptionsAsync();
+
                     return PartialView("movieedit", movie);
                 }
             }
 
             existingMovie.Title = movie.Title;
             existingMovie.Synopsis = movie.Synopsis;
-            existingMovie.Genre = movie.Genre;
-            existingMovie.Rating = movie.Rating;
+            existingMovie.GenreId = movie.GenreId;
+            existingMovie.AudienceRatingId = movie.AudienceRatingId;
             existingMovie.RuntimeHours = movie.RuntimeHours;
             existingMovie.RuntimeMinutes = movie.RuntimeMinutes;
             existingMovie.ReleaseDate = movie.ReleaseDate;

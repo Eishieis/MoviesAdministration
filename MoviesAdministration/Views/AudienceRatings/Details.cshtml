@@ -1,0 +1,33 @@
+@model MoviesAdministration.Models.AudienceRating
+
+@{
+    ViewData["Title"] = "Audience Rating Details";
+}
+
+<div class="container py-4">
+
+    <h1>Audience Rating Details</h1>
+    <p class="text-muted">View audience rating information.</p>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+
+            <dl class="row">
+                <dt class="col-sm-3">Rating ID</dt>
+                <dd class="col-sm-9">@Model.Id</dd>
+
+                <dt class="col-sm-3">Rating Name</dt>
+                <dd class="col-sm-9">@Model.Name</dd>
+            </dl>
+
+            <a asp-action="Edit"
+               asp-route-id="@Model.Id"
+               class="btn btn-warning">Edit</a>
+
+            <a asp-action="Index"
+               class="btn btn-secondary">Back to List</a>
+
+        </div>
+    </div>
+
+</div>

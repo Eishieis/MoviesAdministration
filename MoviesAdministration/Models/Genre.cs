@@ -7,6 +7,8 @@ namespace MoviesAdministration.Models
         public int Id { get; set; }
 
         [Required]
-        public string Title { get; set; } = string.Empty;
+        public string Name { get; set; }
+
+        public ICollection<Movie> Movies { get; set; } = new List<Movie>();
     }
 }
